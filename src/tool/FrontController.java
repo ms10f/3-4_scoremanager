@@ -1,8 +1,6 @@
 package tool;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class FrontController extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
         try {
             String path = request.getServletPath().substring(1);
             String name = path.replace(".a", "A").replace('/', '.');
@@ -23,9 +20,22 @@ public class FrontController extends HttpServlet {
             if (url != null && !url.isEmpty()) {
                 request.getRequestDispatcher(url).forward(request, response);
             }
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
+            // Actionファイルが無い場合のエラー
+            request.setAttribute("message", "ページが存在しません。");
+
+            response.setStatus(404);
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
+            // 数値入力が不正な場合のエラー
+            request.setAttribute("message", "数値が正常に入力されませんでした。");
+
+            response.setStatus(400);
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         } catch (Exception e) {
+            // その他のエラー
             response.setStatus(500);
-            e.printStackTrace(out);
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
 

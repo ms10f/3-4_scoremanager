@@ -5,5 +5,8 @@
 	<c:param name="title">エラーページ</c:param>
 	<c:param name="content">
         <p class="text-start">エラーが発生しました</p>
+		<c:if test="${!empty requestScope.message}">
+			<p class="text-start">${requestScope.message}</p>
+		</c:if>
 	</c:param>
 </c:import>
