@@ -21,6 +21,14 @@ public class GlobalFilter implements Filter {
         request.setCharacterEncoding("utf8");
         response.setCharacterEncoding("utf8");
 
+        // contextPathをJSPで使用できるように
+        String contextPath = request.getServletContext().getContextPath();
+        if (contextPath.isEmpty()) {
+            contextPath = "/.";
+        }
+
+        request.setAttribute("contextPath", contextPath);
+
         chain.doFilter(request, response);
     }
 
