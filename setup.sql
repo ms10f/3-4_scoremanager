@@ -56,7 +56,6 @@ create table test(
     no int not null,
     point int default null
         check(-1 <= point and point <= 100),
-    class_num varchar(5) default null,
     primary key(school_cd, student_cd, subject_cd, no),
     foreign key(school_cd) references school(cd),
     foreign key(student_cd) references student(no),
