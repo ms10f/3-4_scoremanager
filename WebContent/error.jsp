@@ -6,7 +6,7 @@
 	<c:param name="content">
         <p class="text-start">エラーが発生しました</p>
 		<c:if test="${!empty requestScope.message}">
-			<p class="text-start">${requestScope.message}</p>
+			<p class="text-start"><c:out value="${requestScope.message}"/></p>
 		</c:if>
 	</c:param>
 </c:import>
