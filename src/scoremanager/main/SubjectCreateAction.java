@@ -7,7 +7,12 @@ import tool.Action;
 
 public class SubjectCreateAction implements Action {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public boolean loginRequire() {
+        return true;
+    }
+
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return "subject_create.jsp";
     }
 }

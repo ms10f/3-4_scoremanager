@@ -8,6 +8,9 @@
             <form action="SubjectDeleteExecute.action" method="post" class="mb-5">
                 <p>「${name}(${cd})」を削除してもよろしいですか</p>
 
+                <input type="hidden" name="cd" value="${cd}">
+                <input type="hidden" name="name" value="${name}">
+
                 <input type="submit" class="btn btn-danger mb-3" value="削除" />
             </form>
             <a href="SubjectList.action">戻る</a>

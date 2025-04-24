@@ -8,13 +8,21 @@
             <form action="SubjectCreateExecute.action" method="post">
                 <div class="mb-3">
                     <label for="cd" class="form-label">科目コード</label>
-                    <input type="text" class="form-control" id="cd" placeholder="科目コードを入力してください" maxlength="3" required>
-                    <div class="text-warning"><c:out value="${errors.cd}"/></div>
+                    <input type="text" class="form-control" id="cd" name="cd" value="${cd}" placeholder="科目コードを入力してください" maxlength="3" required>
+                    <div class="text-warning">
+                        <c:forEach var="er" items="${errors.cd}">
+                            <c:out value="${er}"/>
+                        </c:forEach>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">科目名</label>
-                    <input type="text" class="form-control" id="name" placeholder="科目名を入力してください" maxlength="20" required>
-                    <div class="text-warning"><c:out value="${errors.name}"/></div>
+                    <input type="text" class="form-control" id="name" name="name" value="${name}" placeholder="科目名を入力してください" maxlength="20" required>
+                    <div class="text-warning">
+                        <c:forEach var="er" items="${errors.name}">
+                            <c:out value="${er}"/>
+                        </c:forEach>
+                    </div>
                 </div>
 
                 <input type="submit" class="btn btn-primary mb-3" value="登録" />

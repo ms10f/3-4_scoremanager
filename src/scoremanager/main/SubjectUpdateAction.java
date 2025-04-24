@@ -1,37 +1,42 @@
 package scoremanager.main;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.School;
+import bean.Subject;
+import bean.Teacher;
+import dao.SubjectDAO;
 import tool.Action;
+import utils.Utils;
 
 public class SubjectUpdateAction implements Action {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public boolean loginRequire() {
+        return true;
+    }
+
+    @Override
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Teacher user = Utils.getUser(request);
+        School school = user.getSchool();
+
+        SubjectDAO dao = new SubjectDAO();
+
         // パラメータ受取
         String cd = request.getParameter("cd");
 
-        // SubjectDAOが出来るまでの代替
-        {
-            Map<String, String> subjects = new HashMap() {
-                {
-                    put("A02", "国語");
-                    put("B02", "数学");
-                    put("C02", "英語コミュニケーション概論");
-                }
-            };
+        // 科目取得
+        Subject subject = dao.get(school, cd);
 
-            // 科目が無いなら科目一覧に戻る
-            if (!subjects.containsKey(cd)) {
-                return "SubjectList.action";
-            }
-
-            request.setAttribute("cd", cd);
-            request.setAttribute("name", subjects.get(cd));
+        // 科目が無いなら科目一覧に戻る
+        if (subject == null) {
+            response.sendRedirect("SubjectList.action");
+            return null;
         }
+
+        request.setAttribute("cd", cd);
+        request.setAttribute("name", subject.getName());
 
         return "subject_update.jsp";
     }
