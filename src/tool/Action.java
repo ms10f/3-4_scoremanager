@@ -13,5 +13,5 @@ public interface Action {
         return false;
     }
 
-    public String execute(HttpServletRequest request, HttpServletResponse response);
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
