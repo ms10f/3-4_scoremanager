@@ -22,7 +22,7 @@ public class DAO {
 			con.prepareStatement("select 1 from teacher");
 		} catch (SQLException e) {
 			try (Statement st = con.createStatement()) {
-				st.execute("RUNSCRIPT FROM './stup.sql'");
+				st.execute("RUNSCRIPT FROM './setup.sql'");
 			}
 		}
 
