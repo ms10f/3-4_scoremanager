@@ -1,6 +1,10 @@
 package tool;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +38,12 @@ public class FrontController extends HttpServlet {
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         } catch (Exception e) {
             // その他のエラー
+            { // デバッグ用にエラー文を表示する
+                Writer w = new StringWriter();
+                e.printStackTrace(new PrintWriter(w));
+                request.setAttribute("message", w.toString());
+            }
+
             response.setStatus(500);
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
