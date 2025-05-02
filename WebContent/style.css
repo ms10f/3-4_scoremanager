@@ -2,3 +2,18 @@
     display: flex;
     justify-content: center;
 }
+
+#sidebar nav{
+    width: 20rem;
+    box-sizing: border-box;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+#user {
+    right: 0;
+    bottom: -0.5rem;
+}
