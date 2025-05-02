@@ -3,7 +3,7 @@
 
 <c:import url="/common/base.jsp">
     <c:param name="content">
-        <section class="me-4 text-start">
+        <section class="_mh-40 me-4 text-start">
             <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">科目管理</h2>
             <div class="text-end px-4">
                 <a href="SubjectCreate.action">新規登録</a>
