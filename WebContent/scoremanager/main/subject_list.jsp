@@ -25,7 +25,6 @@
                     </tr>
                 </c:forEach>
             </table>
-            </div>
         </section>
     </c:param>
 </c:import>

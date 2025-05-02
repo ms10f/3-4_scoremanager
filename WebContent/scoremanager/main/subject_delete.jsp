@@ -14,7 +14,6 @@
                 <input type="submit" class="btn btn-danger mb-3" value="削除" />
             </form>
             <a href="SubjectList.action">戻る</a>
-            </div>
         </section>
     </c:param>
 </c:import>

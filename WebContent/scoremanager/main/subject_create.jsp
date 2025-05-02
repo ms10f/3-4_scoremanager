@@ -28,7 +28,6 @@
                 <input type="submit" class="btn btn-primary mb-3" value="登録" />
             </form>
             <a href="SubjectList.action">戻る</a>
-            </div>
         </section>
     </c:param>
 </c:import>
