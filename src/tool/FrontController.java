@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.Utils;
+
 @WebServlet("*.action")
 @MultipartConfig
 public class FrontController extends HttpServlet {
@@ -21,8 +23,15 @@ public class FrontController extends HttpServlet {
             String path = request.getServletPath().substring(1);
             String name = path.replace(".a", "A").replace('/', '.');
             Action action = (Action) Class.forName(name).getDeclaredConstructor().newInstance();
-            String url = action.execute(request, response);
 
+            String contextPath = (String) request.getAttribute("contextPath");
+
+            if (action.loginRequire() && Utils.getUser(request) == null) {
+                response.sendRedirect(contextPath + "/scoremanager/Login.action");
+                return;
+            }
+
+            String url = action.execute(request, response);
             if (url != null && !url.isEmpty()) {
                 request.getRequestDispatcher(url).forward(request, response);
             }
