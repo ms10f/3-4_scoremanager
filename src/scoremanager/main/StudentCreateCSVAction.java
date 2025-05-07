@@ -56,10 +56,17 @@ public class StudentCreateCSVAction implements Action {
 
         String line;
         while ((line = reader.readLine()) != null) {
+            line = line.trim();
+
             String[] cols = line.split("\\s*,\\s*");
 
             CSVReadedData readed = new CSVReadedData();
             result.add(readed);
+
+            // 行が空なら入力可能な空行として処理
+            if (line.isEmpty()) {
+                continue;
+            }
 
             // エラー処理
             if (cols.length != 4) {
