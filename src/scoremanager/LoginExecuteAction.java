@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager;
 
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class LoginExecuteAction implements Action {
             session.setAttribute("teacher", teacher);
 
             // メニュー画面にリダイレクト
-            response.sendRedirect("Menu.action");
+            response.sendRedirect("main/Menu.action");
             return null;
         } else {
             Map<String, List<String>> errors = new NamedErrors().add("login", "ログインに失敗しました。IDまたはパスワードが正しくありません。").get();
