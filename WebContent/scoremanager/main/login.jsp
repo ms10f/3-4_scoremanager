@@ -8,9 +8,9 @@
 
     <c:param name="head">
         <script>
-            function togglePasswordVisibility() {
+            function togglePasswordVisibility(cbEl) {
                 var passwordField = document.getElementById("password");
-                if (passwordField.type === "password") {
+                if (cbEl.checked) {
                     passwordField.type = "text";
                 } else {
                     passwordField.type = "password";
@@ -33,7 +33,7 @@
                         <input type="password" id="password" name="password" required style="width: 55%; height: 55px; padding-left: 40px; padding-top: 10px; border-radius: 10px; border: 1px solid #ced4da; font-size: 90%;">
                     </div>
                     <div align="center" style="margin-bottom: 20px;">
-                        <input type="checkbox" id="chk_d_ps" name="chk_d_ps" onclick="togglePasswordVisibility()">
+                        <input type="checkbox" id="chk_d_ps" name="chk_d_ps" onchange="togglePasswordVisibility(this)">
                         <label for="chk_d_ps" style="margin-left: 10px;">パスワードを表示</label>
                     </div>
                     <div align="center">
