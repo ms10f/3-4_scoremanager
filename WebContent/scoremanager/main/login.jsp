@@ -31,11 +31,11 @@
                 <form action="LoginExecute.action" method="post" style="padding: 20px;">
                     <div align="center" style="position: relative; margin-bottom: 20px;">
                         <label for="id" style="position: absolute; margin-left: 10px; margin-top: 5px;">I D</label>
-                        <input type="text" id="id" name="id" value="${id}" required style="width: 55%; height: 55px; padding-left: 40px; padding-top: 10px; border-radius: 10px; border: 1px solid #ced4da; font-size: 90%;">
+                        <input type="text" id="id" name="id" value="${id}" required maxlength="10" pattern="^\w+$" placeholder="半角でご入力ください" style="width: 55%; height: 55px; padding-left: 40px; padding-top: 10px; border-radius: 10px; border: 1px solid #ced4da; font-size: 90%;">
                     </div>
                     <div align="center" style="position: relative; margin-bottom: 20px;">
                         <label for="password" style="position: absolute; margin-left: 10px; margin-top: 5px;">パスワード</label>
-                        <input type="password" id="password" name="password" required style="width: 55%; height: 55px; padding-left: 40px; padding-top: 10px; border-radius: 10px; border: 1px solid #ced4da; font-size: 90%;">
+                        <input type="password" id="password" name="password" required maxlength="30" pattern="^\w+$" placeholder="30文字以内の半角英数字でご入力ください" style="width: 55%; height: 55px; padding-left: 40px; padding-top: 10px; border-radius: 10px; border: 1px solid #ced4da; font-size: 90%;">
                     </div>
                     <div align="center" style="margin-bottom: 20px;">
                         <input type="checkbox" id="chk_d_ps" name="chk_d_ps" onchange="togglePasswordVisibility(this)">
