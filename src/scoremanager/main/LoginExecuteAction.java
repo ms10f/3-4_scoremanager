@@ -23,10 +23,9 @@ public class LoginExecuteAction implements Action {
         if (teacher != null) {
             session.setAttribute("teacher", teacher);
 
-            // MenuActionを呼び出す
-            MenuAction menuAction = new MenuAction();
-            return menuAction.execute(request, response);
-
+            // メニュー画面にリダイレクト
+            response.sendRedirect("Menu.action");
+            return null;
         } else {
             return "login-error.jsp";
         }
