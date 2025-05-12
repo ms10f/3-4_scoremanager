@@ -27,7 +27,7 @@ public class FrontController extends HttpServlet {
             String contextPath = (String) request.getAttribute("contextPath");
 
             if (action.loginRequire() && Utils.getUser(request) == null) {
-                response.sendRedirect(contextPath + "/scoremanager/main/Login.action");
+                response.sendRedirect(contextPath + "/scoremanager/Login.action");
                 return;
             }
 
