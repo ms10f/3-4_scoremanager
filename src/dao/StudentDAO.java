@@ -184,4 +184,34 @@ public class StudentDAO extends DAO {
 
         return success;
     }
+    public List<Integer> getEntYearList(School school) throws Exception {
+        String sql = "SELECT DISTINCT ent_year FROM student WHERE school_cd = ? ORDER BY ent_year";
+        List<Integer> years = new ArrayList<>();
+
+        try (Connection con = getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, school.getCd());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                years.add(rs.getInt("ent_year"));
+            }
+        }
+
+        return years;
+    }
+
+    public List<String> getClassNumList(School school) throws Exception {
+        String sql = "SELECT DISTINCT class_num FROM student WHERE school_cd = ? ORDER BY class_num";
+        List<String> classes = new ArrayList<>();
+
+        try (Connection con = getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
+            st.setString(1, school.getCd());
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                classes.add(rs.getString("class_num"));
+            }
+        }
+
+        return classes;
+    }
+
 }
