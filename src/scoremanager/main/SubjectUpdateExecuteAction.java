@@ -46,7 +46,7 @@ public class SubjectUpdateExecuteAction implements Action {
             }
 
             request.setAttribute("errors", errors.get());
-            return "subject_update.action";
+            return "subject_update.jsp";
         }
 
         subject = new Subject();
