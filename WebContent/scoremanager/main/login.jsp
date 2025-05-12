@@ -42,7 +42,7 @@
                         <label for="chk_d_ps" style="margin-left: 10px;">パスワードを表示</label>
                     </div>
                     <div align="center">
-                        <button type="submit" style="background-color: #007bff; color: white; padding: 12px 36px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">ログイン</button>
+                        <button type="submit" name="login" style="background-color: #007bff; color: white; padding: 12px 36px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">ログイン</button>
                     </div>
                 </form>
             </div>
