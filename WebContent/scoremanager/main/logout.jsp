@@ -17,7 +17,7 @@
             </p>
             <!-- 検索フォーム処理 -->
             <div class="login-link" style="text-align: left; margin-top: 60px; width: 80%; margin: 20px auto 0;">
-                <a href="login.jsp" style="padding-left: 10px;">ログイン</a>
+                <a href="Login.action" style="padding-left: 10px;">ログイン</a>
             </div>
         </section>
     </c:param>
