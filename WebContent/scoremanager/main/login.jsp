@@ -21,9 +21,14 @@
 
     <c:param name="content">
         <section>
-            <div align="center" style="width: 60%; margin: auto;">
+            <div align="center" style="width: 60%; margin: auto; border: 1px solid #ced4da;">
                 <h2 style="background-color: #f0f0f0; color: #000000; width: 100%; padding: 15px; margin: 0;">ログイン</h2>
-                <form action="LoginExecute.action" method="post" style="border-left: 1px solid #ced4da; border-right: 1px solid #ced4da; border-bottom: 1px solid #ced4da; padding: 20px;">
+                <ul style="margin-bottom: 10px;">
+                    <c:forEach var="er" items="${errors.login}">
+                        <li style="color: black; padding-top: 10px;"><c:out value="${er}"/></li>
+                    </c:forEach>
+                </ul>
+                <form action="LoginExecute.action" method="post" style="padding: 20px;">
                     <div align="center" style="position: relative; margin-bottom: 20px;">
                         <label for="id" style="position: absolute; margin-left: 10px; margin-top: 5px;">I D</label>
                         <input type="text" id="id" name="id" value="${id}" required style="width: 55%; height: 55px; padding-left: 40px; padding-top: 10px; border-radius: 10px; border: 1px solid #ced4da; font-size: 90%;">
