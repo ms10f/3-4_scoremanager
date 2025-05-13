@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
             if (!(url == null || url.isEmpty())) {
                 request.getRequestDispatcher(url).forward(request, response);
             }
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | ClassCastException e) {
             // Actionファイルが無い場合のエラー
             request.setAttribute("message", "ページが存在しません。");
 
