@@ -20,9 +20,9 @@ public class FrontController extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String path = request.getServletPath().substring(1);
-            String name = path.replace(".a", "A").replace('/', '.');
-            Action action = (Action) Class.forName(name).getDeclaredConstructor().newInstance();
+            String path = request.getServletPath();
+            String actionClassName = path.substring(1).replace(".a", "A").replace('/', '.');
+            Action action = (Action) Class.forName(actionClassName).getDeclaredConstructor().newInstance();
 
             String contextPath = (String) request.getAttribute("contextPath");
 
@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
             }
 
             String url = action.execute(request, response);
-            if (url != null && !url.isEmpty()) {
+            if (!(url == null || url.isEmpty())) {
                 request.getRequestDispatcher(url).forward(request, response);
             }
         } catch (ClassNotFoundException | NoSuchMethodException e) {
