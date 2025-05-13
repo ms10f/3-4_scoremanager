@@ -5,18 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NamedParamSQLState implements AutoCloseable {
-    private Map<String, Set<Integer>> parameterNaming = new HashMap<>();
+    private Map<String, List<Integer>> parameterNaming = new HashMap<>();
     private PreparedStatement st = null;
 
     public NamedParamSQLState(Connection con, String sql) throws SQLException {
-
         Pattern namedParaPattern = Pattern.compile(":([a-zA-Z0-9_]*)");
         Matcher match = namedParaPattern.matcher(sql);
 
@@ -29,7 +28,7 @@ public class NamedParamSQLState implements AutoCloseable {
             paramCount++;
             String key = match.group(1);
 
-            Set<Integer> positions = parameterNaming.getOrDefault(key, new HashSet<>());
+            List<Integer> positions = parameterNaming.getOrDefault(key, new ArrayList<>());
             positions.add(paramCount);
             parameterNaming.put(key, positions);
 
@@ -53,7 +52,7 @@ public class NamedParamSQLState implements AutoCloseable {
     }
 
     public void setString(String name, String value) throws SQLException {
-        Set<Integer> paramPos = parameterNaming.get(name);
+        List<Integer> paramPos = parameterNaming.get(name);
 
         if (paramPos == null) {
             return;
@@ -65,7 +64,7 @@ public class NamedParamSQLState implements AutoCloseable {
     }
 
     public void setInt(String name, int value) throws SQLException {
-        Set<Integer> paramPos = parameterNaming.get(name);
+        List<Integer> paramPos = parameterNaming.get(name);
 
         if (paramPos == null) {
             return;
