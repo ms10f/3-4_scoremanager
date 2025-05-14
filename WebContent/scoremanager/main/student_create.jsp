@@ -54,7 +54,7 @@ input[type="text"], select {
 		<section class="_mh-40 me-4 text-start">
 			<h2
 				class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生管理</h2>
-			<form action="../student/StudentCreateExecite.action" method="get">
+			<form action="StudentCreateExecite.action" method="get">
 				<div class="form-group">
 					<label>入学年度</label> <select name="ent_year">
 						<option value="">--------</option>

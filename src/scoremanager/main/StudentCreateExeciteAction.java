@@ -53,6 +53,6 @@ public class StudentCreateExeciteAction implements Action{
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-		return "/scoremanager/student_create.jsp";
+		return "student_create_done.jsp";
 	}
 }

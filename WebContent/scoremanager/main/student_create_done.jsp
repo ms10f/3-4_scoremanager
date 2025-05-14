@@ -1,12 +1,11 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-<%@page import="bean.Student, java.util.List" %>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="bean.Student, java.util.List"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="/common/base.jsp">
-<div class="container">
-<div class="content">
+<c:param name="content">
 <p>
 
-  ${student.name}さんの
+			${student.name}さんの
 <c:choose>
 <c:when test="${line}">
 
@@ -19,8 +18,5 @@
 </c:choose>
 </p>
 
-</div>
-</div>
+	</c:param>
 </c:import>
-Oracle Java Technologies | Oracle
-Java can help reduce costs, drive innovation, & improve application services; the #1 programming language for IoT, enterprise architecture, and cloud computing.
