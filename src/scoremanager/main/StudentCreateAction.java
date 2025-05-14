@@ -1,0 +1,15 @@
+package scoremanager.main;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import tool.Action;
+
+public class StudentCreateAction implements Action{
+	public boolean loginRequire() {
+        return true;
+    }
+
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return "student_create.jsp";
+    }
+}

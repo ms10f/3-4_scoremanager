@@ -4,7 +4,7 @@
 <c:import url="/common/base.jsp">
     <c:param name="content">
         <section class="_mh-40 me-4 text-start">
-            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">科目情報登録</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">科目情報変更</h2>
             <div class="bg-success bg-opacity-50 text-center mb-5">登録が完了しました</div>
             <div class="d-flex pt-5">
                 <a href="SubjectCreate.action" class="me-5">戻る</a>
