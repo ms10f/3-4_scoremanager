@@ -9,13 +9,16 @@ public class Utils {
     }
 
     /**
-     * ログイン済みのユーザを取得する
+     * ログイン済みのユーザを取得する 取得できなかった場合、nullを返す
      * 
      * @param request
-     * @throws Exception
      */
-    public static Teacher getUser(HttpServletRequest request) throws Exception {
-        return (Teacher) request.getSession().getAttribute("teacher");
+    public static Teacher getUser(HttpServletRequest request) {
+        try {
+            return (Teacher) request.getSession().getAttribute("teacher");
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
