@@ -4,7 +4,7 @@
 <c:import url="/common/base.jsp">
     <c:param name="content" value="
         <section class='me-4 text-start'>
-            <h2 class='h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold'>メインメニュー</h2>
+            <h2 class='h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold'>メニュー</h2>
             <div class='d-flex justify-content-evenly mt-4' style='gap: 10px;'>
                 <!-- 左のボックス：学生管理 -->
                 <div class='p-3 d-flex align-items-center justify-content-center rounded'
