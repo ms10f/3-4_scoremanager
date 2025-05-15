@@ -38,9 +38,9 @@ public class TestListStudentAction implements Action {
 	    StudentDAO studentDAO = new StudentDAO();
 	    Student student = studentDAO.get(school, studentCd);
 
-	    // 入学年度リスト(2015〜2025）
+	    // 入学年度リスト(2015〜2035）
 	    List<Integer> entYears = new ArrayList<>();
-	    for (int i = 2015; i <= 2025; i++) {
+	    for (int i = 2015; i <= 2035; i++) {
 	        entYears.add(i);
 	    }
 	    request.setAttribute("f1", entYears);

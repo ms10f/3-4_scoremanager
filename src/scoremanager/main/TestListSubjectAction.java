@@ -52,9 +52,9 @@ public class TestListSubjectAction implements Action {
         // 科目一覧取得
         List<Subject> subjectList = subjectDAO.filter(school);
 
-        // 入学年度リスト(2015〜2025）
+        // 入学年度リスト(2015〜2035）
         List<Integer> entYears = new ArrayList<>();
-        for (int i = 2015; i <= 2025; i++) {
+        for (int i = 2015; i <= 2035; i++) {
             entYears.add(i);
         }
 
