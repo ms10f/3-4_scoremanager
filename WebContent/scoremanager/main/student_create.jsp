@@ -35,6 +35,8 @@ label {
 input[type="text"], select {
 	width: 100%;
 	padding: 10px;
+	margin-bottom: 10px;
+	background-position: calc(100% - 10px) center;
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	font-size: 14px;
@@ -48,92 +50,75 @@ input[type="text"], select {
 	border-radius: 6px;
 	font-size: 14px;
 	cursor: pointer;
+	margin-top: 20px;
 }
 
 .back-link {
-	margin-top: 12px;
+	margin-top: 20px;
 	display: inline-block;
 }
 </style>
 
 <script>
-	function validateForm() {
 
-		var f1 = document.getElementById("ent_year").value;
+// 学生番号は反悪に強制変換
+function enforceHalfWidth(input) {
+    input.value = input.value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(ch) {
+        return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+    });
+}
 
-		var errorMessage = document.getElementById("error-message");
-
-		if (f1 == '') {
-
-			errorMessage.style.display = 'block';
-
-			return false;
-
-		} else {
-
-			errorMessage.style.display = 'none';
-
-			return true;
-
-		}
-
-	}
+function validateForm() {
+    var studentNumber = document.getElementById("studentNumber");
+    enforceHalfWidth(studentNumber);
+    return true;
+}
 </script>
 
 <c:import url="/common/base.jsp">
 	<c:param name="content">
 		<section class="_mh-40 me-4 text-start">
 			<h2
-				class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生管理</h2>
-			<form action="StudentCreateExecite.action" method="get">
+				class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生情報登録</h2>
+			<form action="StudentCreateExecute.action" method="get"
+				onsubmit="return validateForm()">
 				<div class="form-group">
-					<label>入学年度</label> <select name="ent_year" id="ent_year">
-						<option value="" disabled selected>--------</option>
-						<option value="2015">2015</option>
-						<option value="2016">2016</option>
-						<option value="2017">2017</option>
-						<option value="2019">2019</option>
-						<option value="2018">2018</option>
-						<option value="2020">2020</option>
-						<option value="2021">2021</option>
-						<option value="2022">2022</option>
-						<option value="2023">2023</option>
-						<option value="2024">2024</option>
-						<option value="2025">2025</option>
-						<option value="2026">2026</option>
-						<option value="2027">2027</option>
-						<option value="2028">2028</option>
-						<option value="2029">2029</option>
-						<option value="2030">2030</option>
-						<option value="2031">2031</option>
-						<option value="2032">2032</option>
-						<option value="2033">2033</option>
-						<option value="2034">2034</option>
-						<option value="2035">2035</option>
+					<label>入学年度</label> <select name="ent_year">
+						<option value="">--------</option>
+						<c:forEach var="year" begin="2015" end="2035">
+							<option value="${year}"
+								<c:if test="${param.ent_year == year}">selected</c:if>>${year}</option>
+						</c:forEach>
 					</select>
-					<p id="error-message">入学年度を選択してください</p>
-					<label>学生番号</label> <input type="text" name="no" required>
+
+					<div class="text-warning">
+						<c:forEach var="er" items="${errors.ent_year}">
+							<c:out value="${er}" />
+						</c:forEach>
+					</div>
+
+					<label style="margin-top: 10px;">学生番号</label> <input type="text"
+						name="no" id="studentNumber" placeholder="学生番号を入力してください"
+						value="${param.no}" required>
 					<div class="text-warning">
 						<c:forEach var="er" items="${errors.no}">
 							<c:out value="${er}" />
 						</c:forEach>
 					</div>
-					<label>氏名</label> <input type="text" name="name" required>
-					<label>クラス</label> <select name="classnum">
-						<option value="101">101</option>
-						<option value="102">102</option>
-						<option value="103">103</option>
-						<option value="104">104</option>
-						<option value="105">105</option>
-						<option value="106">106</option>
-						<option value="107">107</option>
-						<option value="108">108</option>
-						<option value="109">109</option>
-						<option value="110">110</option>
-						<option value="111">111</option>
-					</select>
 
-					<button type="submit" class="submit-btn">登録して終了</button>
+					<label>氏名</label> <input type="text" name="name"
+						placeholder="氏名を入力してください" value="${param.name}" required>
+
+					<label>クラス</label> <select name="classnum">
+						<c:forEach var="classnum" begin="101" end="111">
+							<option value="${classnum}"
+								<c:if test="${param.classnum == classnum}">selected</c:if>>${classnum}</option>
+						</c:forEach>
+					</select>
+					<button type="submit" class="submit-btn" name="end">登録して終了</button>
+					<div>
+						<a href="StudentList.action" class="back-link">戻る</a>
+					</div>
 				</div>
 			</form>
 		</section>
