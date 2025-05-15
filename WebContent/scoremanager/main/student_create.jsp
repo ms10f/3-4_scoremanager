@@ -78,8 +78,8 @@ function validateForm() {
 <c:import url="/common/base.jsp">
 	<c:param name="content">
 		<section class="_mh-40 me-4 text-start">
-			<h2
-				class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生情報登録</h2>
+			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生情報登録</h2>
+			<a class="text-end d-block pe-4" href="StudentCreateCSV.action">CSVでまとめて登録</a>
 			<form action="StudentCreateExecute.action" method="get"
 				onsubmit="return validateForm()">
 				<div class="form-group">
