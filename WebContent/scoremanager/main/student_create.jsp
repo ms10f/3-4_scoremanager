@@ -28,7 +28,7 @@ form {
 
 label {
 	display: block;
-	margin-bottom: 6px;
+	margin-bottom: 10px;
 	font-weight: bold;
 }
 

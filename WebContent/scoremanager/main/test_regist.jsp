@@ -60,8 +60,8 @@
             <form action="TestRegistExecute.action" method="post">
                 <c:choose>
                     <c:when test="${tests.size()>0}">
-                        <div>
-                            <h2>科目：${subject.name} (${num}回)</h2>
+                        <div style="text-align: left">
+                            <label>科目：${subject.name} (${num}回)</label>
                         </div>
                         <table class="table table-hover">
                             <tr>
@@ -70,6 +70,7 @@
                                 <th>学生番号</th>
                                 <th>氏名</th>
                                 <th>点数</th>
+                                <th>削除</th>
                             </tr>
                             <c:forEach var="test" items="${tests}">
                                 <tr>
@@ -77,9 +78,12 @@
                                     <td>${test.student.classNum}</td>
                                     <td>${test.student.no}</td>
                                     <td>${test.student.name}</td>
+
                                     <td>
                                         <input type="number" name="point_${test.student.no}" min="0" max="100" <c:if test="${test.point != -1}"> value="${test.point}"</c:if>>
                                     </td>
+                                    <td><input type="checkbox" name="delete_${test.student.no}"></td>
+
                                 </tr>
                                 <!-- 登録する学生番号を一覧として送る -->
                                 <input type="hidden" name="student_no_set[]" value="${test.student.no}" />
@@ -89,9 +93,6 @@
                         <input type="hidden" name="num" value="${num}" />
                         <input type="submit" value="登録して終了">
                     </c:when>
-                    <c:otherwise>
-                        <div>成績が存在しませんでした</div>
-                    </c:otherwise>
                 </c:choose>
             </form>
         </section>
