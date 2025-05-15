@@ -9,6 +9,13 @@ h2 {
 	margin-bottom: 24px;
 }
 
+#error-message {
+	display: none;
+	color: #FFC824;
+	font-size: 0.9em;
+	text-align: left;
+}
+
 form {
 	background-color: white;
 	padding: 20px;
@@ -49,6 +56,30 @@ input[type="text"], select {
 }
 </style>
 
+<script>
+	function validateForm() {
+
+		var f1 = document.getElementById("ent_year").value;
+
+		var errorMessage = document.getElementById("error-message");
+
+		if (f1 == '') {
+
+			errorMessage.style.display = 'block';
+
+			return false;
+
+		} else {
+
+			errorMessage.style.display = 'none';
+
+			return true;
+
+		}
+
+	}
+</script>
+
 <c:import url="/common/base.jsp">
 	<c:param name="content">
 		<section class="_mh-40 me-4 text-start">
@@ -56,8 +87,8 @@ input[type="text"], select {
 				class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生管理</h2>
 			<form action="StudentCreateExecite.action" method="get">
 				<div class="form-group">
-					<label>入学年度</label> <select name="ent_year">
-						<option value="">--------</option>
+					<label>入学年度</label> <select name="ent_year" id="ent_year">
+						<option value="" disabled selected>--------</option>
 						<option value="2015">2015</option>
 						<option value="2016">2016</option>
 						<option value="2017">2017</option>
@@ -80,12 +111,13 @@ input[type="text"], select {
 						<option value="2034">2034</option>
 						<option value="2035">2035</option>
 					</select>
+					<p id="error-message">入学年度を選択してください</p>
 					<label>学生番号</label> <input type="text" name="no" required>
 					<div class="text-warning">
-                        <c:forEach var="er" items="${errors.no}">
-                            <c:out value="${er}"/>
-                        </c:forEach>
-                    </div>
+						<c:forEach var="er" items="${errors.no}">
+							<c:out value="${er}" />
+						</c:forEach>
+					</div>
 					<label>氏名</label> <input type="text" name="name" required>
 					<label>クラス</label> <select name="classnum">
 						<option value="101">101</option>

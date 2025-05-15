@@ -39,7 +39,7 @@ public class StudentCreateExeciteAction implements Action{
                 errors.add("no", "学生番号が重複しています");
             }
             request.setAttribute("errors", errors.get());
-            return "StudentCreateAction.java";
+            return "student_create.jsp";
         }
 		stu.setEntYear(Ent);
 		stu.setNo(no);
