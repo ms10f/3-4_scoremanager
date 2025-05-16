@@ -1,81 +1,82 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<style>
-h2 {
-	font-size: 24px;
-	background-color: #f0f0f0;
-	padding: 12px;
-	margin-bottom: 24px;
-}
-
-#error-message {
-	display: none;
-	color: #FFC824;
-	font-size: 0.9em;
-	text-align: left;
-}
-
-form {
-	background-color: white;
-	padding: 20px;
-	border-radius: 8px;
-}
-
-.form-group {
-	margin-bottom: 20px;
-}
-
-label {
-	display: block;
-	margin-bottom: 10px;
-	font-weight: bold;
-}
-
-input[type="text"], select {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	background-position: calc(100% - 10px) center;
-	border: 1px solid #ccc;
-	border-radius: 6px;
-	font-size: 14px;
-}
-
-.submit-btn {
-	padding: 10px 20px;
-	background-color: #444;
-	color: white;
-	border: none;
-	border-radius: 6px;
-	font-size: 14px;
-	cursor: pointer;
-	margin-top: 20px;
-}
-
-.back-link {
-	margin-top: 20px;
-	display: inline-block;
-}
-</style>
-
-<script>
-
-// 学生番号は反悪に強制変換
-function enforceHalfWidth(input) {
-    input.value = input.value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(ch) {
-        return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
-    });
-}
-
-function validateForm() {
-    var studentNumber = document.getElementById("studentNumber");
-    enforceHalfWidth(studentNumber);
-    return true;
-}
-</script>
-
 <c:import url="/common/base.jsp">
+	<c:param name="head">
+		<style>
+			h2 {
+				font-size: 24px;
+				background-color: #f0f0f0;
+				padding: 12px;
+				margin-bottom: 24px;
+			}
+
+			#error-message {
+				display: none;
+				color: #FFC824;
+				font-size: 0.9em;
+				text-align: left;
+			}
+
+			form {
+				background-color: white;
+				padding: 20px;
+				border-radius: 8px;
+			}
+
+			.form-group {
+				margin-bottom: 20px;
+			}
+
+			label {
+				display: block;
+				margin-bottom: 10px;
+				font-weight: bold;
+			}
+
+			input[type="text"], select {
+				width: 100%;
+				padding: 10px;
+				margin-bottom: 10px;
+				background-position: calc(100% - 10px) center;
+				border: 1px solid #ccc;
+				border-radius: 6px;
+				font-size: 14px;
+			}
+
+			.submit-btn {
+				padding: 10px 20px;
+				background-color: #444;
+				color: white;
+				border: none;
+				border-radius: 6px;
+				font-size: 14px;
+				cursor: pointer;
+				margin-top: 20px;
+			}
+
+			.back-link {
+				margin-top: 20px;
+				display: inline-block;
+			}
+		</style>
+
+		<script>
+			// 学生番号は反悪に強制変換
+			function enforceHalfWidth(input) {
+				input.value = input.value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(ch) {
+					return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+				});
+			}
+
+			function validateForm() {
+				var studentNumber = document.getElementById("studentNumber");
+				enforceHalfWidth(studentNumber);
+				return true;
+			}
+		</script>
+	</c:param>
+
 	<c:param name="content">
 		<section class="_mh-40 me-4 text-start">
 			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生情報登録</h2>

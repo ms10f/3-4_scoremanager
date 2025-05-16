@@ -1,72 +1,69 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<style>
-#error-message {
-	display: none;
-	color: #FFC824;
-	font-size: 0.9em;
-	text-align: left;
-}
-
-.form-row {
-	display: flex;
-	gap: 0.5rem;
-}
-
-.btn-custom {
-	background-color: #A9A9A9;
-	border-color: #A9A9A9;
-}
-
-.btn-custom:hover {
-	background-color: #5a6268;
-	border-color: #545b62;
-}
-
-#no-data-message {
-	display: none;
-	color: #D35400;
-	font-size: 0.9em;
-	text-align: left;
-	float
-	left;
-}
-</style>
-
-<script>
-    function validateForm() {
-        var f1 = document.getElementById("f1").value;
-        var f2 = document.getElementById("f2").value;
-        var f3 = document.getElementById("f3").value;
-        var errorMessage = document.getElementById("error-message");
-        var formMessage = document.getElementById("form-message");
-
-        if (f1 === '' || f2 === '' || f3 === '') {
-            errorMessage.style.display = 'block';
-            return false;
-        } else {
-            errorMessage.style.display = 'none';
-            return true;
-        }
-    }
-
-    function convertToHalfWidth(input) {
-        input.value = input.value.replace(/[０-９]/g, function(s) {
-            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-        });
-    }
-</script>
-
 <c:import url="/common/base.jsp">
+	<c:param name="head">
+		<style>
+			#error-message {
+				display: none;
+				color: #FFC824;
+				font-size: 0.9em;
+				text-align: left;
+			}
+
+			.form-row {
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			.btn-custom {
+				background-color: #A9A9A9;
+				border-color: #A9A9A9;
+			}
+
+			.btn-custom:hover {
+				background-color: #5a6268;
+				border-color: #545b62;
+			}
+
+			#no-data-message {
+				display: none;
+				color: #D35400;
+				font-size: 0.9em;
+				text-align: left;
+				float
+				left;
+			}
+		</style>
+
+		<script>
+			function validateForm() {
+				var f1 = document.getElementById("f1").value;
+				var f2 = document.getElementById("f2").value;
+				var f3 = document.getElementById("f3").value;
+				var errorMessage = document.getElementById("error-message");
+				var formMessage = document.getElementById("form-message");
+
+				if (f1 === '' || f2 === '' || f3 === '') {
+					errorMessage.style.display = 'block';
+					return false;
+				} else {
+					errorMessage.style.display = 'none';
+					return true;
+				}
+			}
+
+			function convertToHalfWidth(input) {
+				input.value = input.value.replace(/[０-９]/g, function(s) {
+					return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+				});
+			}
+		</script>
+
+	</c:param>
 	<c:param name="content">
 		<section class="me-4">
-			<h2
-				class="h3 text-start mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
+			<h2 class="h3 text-start mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
 			<div class="border rounded px-2 mb-1 py-1">
 				<form action="TestListSubject.action" method="get"
 					class="search-form" onsubmit="return validateForm()">
