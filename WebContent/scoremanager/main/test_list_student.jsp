@@ -51,7 +51,7 @@
 					<div class="form-row align-items-center">
 						<label class="col-md-2 mt-2">科目情報</label>
 						<div class="form-group col-md-2">
-							<label for="f1" class="d-block text-left">入学年度</label> <select
+							<label for="f1" class="d-block text-start">入学年度</label> <select
 								name="f1" id="f1" class="form-control">
 								<option value='' disabled selected>--------</option>
 								<c:forEach var="y" items="${f1}">
@@ -61,7 +61,7 @@
 							</select>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="f2" class="d-block text-left">クラス</label> <select
+							<label for="f2" class="d-block text-start">クラス</label> <select
 								name="f2" id="f2" class="form-control">
 								<option value='' disabled selected>--------</option>
 								<c:forEach var="c" items="${f2}">
@@ -71,7 +71,7 @@
 							</select>
 						</div>
 						<div class="form-group col-md-3">
-							<label for="f3" class="d-block text-left">科目</label> <select
+							<label for="f3" class="d-block text-start">科目</label> <select
 								name="f3" id="f3" class="form-control">
 								<option value='' disabled selected>--------</option>
 								<c:forEach var="s" items="${f3}">
@@ -94,7 +94,7 @@
 					<div class="form-row align-items-center">
 						<label class="col-md-2 mt-2">学生情報</label>
 						<div class="form-group col-md-4">
-							<label for="f4" class="d-block text-left">学生番号</label> <input
+							<label for="f4" class="d-block text-start">学生番号</label> <input
 								type="text" name="f4" id="f4" class="form-control"
 								placeholder="学生番号を入力してください" required maxlength="10"
 								value="${param.f4 != null ? param.f4 : ''}"
