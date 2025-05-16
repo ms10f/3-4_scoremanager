@@ -20,25 +20,6 @@
 				display: flex;
 				gap: 0.5rem;
 			}
-
-
-			.btn-custom {
-				background-color: #A9A9A9;
-				border-color: #A9A9A9;
-			}
-
-			.btn-custom:hover {
-				background-color: #5a6268;
-				border-color: #545b62;
-			}
-
-
-			#no-data-message {
-				display: none;
-				color: #D35400;
-				font-size: 0.9em;
-				text-align: left;
-			}
 		</style>
 
 		<script>

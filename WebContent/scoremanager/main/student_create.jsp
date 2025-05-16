@@ -11,13 +11,6 @@
 				margin-bottom: 24px;
 			}
 
-			#error-message {
-				display: none;
-				color: #FFC824;
-				font-size: 0.9em;
-				text-align: left;
-			}
-
 			form {
 				background-color: white;
 				padding: 20px;

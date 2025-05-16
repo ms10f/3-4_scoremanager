@@ -3,10 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/common/base.jsp">
-	<c:param name="title">
-		得点管理システム
-	</c:param>
-
 	<c:param name="content">
 		<section>
 			<h2 style="background-color: #f0f0f0; width: 80%; padding: 10px; border-radius: 5px; text-align: left; margin: 0 auto; font-size: 30px; padding-left: 20px;">

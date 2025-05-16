@@ -15,25 +15,6 @@
 				display: flex;
 				gap: 0.5rem;
 			}
-
-			.btn-custom {
-				background-color: #A9A9A9;
-				border-color: #A9A9A9;
-			}
-
-			.btn-custom:hover {
-				background-color: #5a6268;
-				border-color: #545b62;
-			}
-
-			#no-data-message {
-				display: none;
-				color: #D35400;
-				font-size: 0.9em;
-				text-align: left;
-				float
-				left;
-			}
 		</style>
 
 		<script>
@@ -157,14 +138,16 @@
 											<c:when test="${t.point != -1}">${t.point}</c:when>
 											<c:otherwise>－</c:otherwise>
 										</c:choose></td>
-									<td><c:forEach var="t2" items="${combinedTests}">
+									<td>
+										<c:forEach var="t2" items="${combinedTests}">
 											<c:if test="${t2.student.no == t.student.no && t2.no == 2}">
 												<c:choose>
 													<c:when test="${t2.point != -1}">${t2.point}</c:when>
 													<c:otherwise>－</c:otherwise>
 												</c:choose>
 											</c:if>
-										</c:forEach></td>
+										</c:forEach>
+									</td>
 								</tr>
 							</c:if>
 						</c:forEach>

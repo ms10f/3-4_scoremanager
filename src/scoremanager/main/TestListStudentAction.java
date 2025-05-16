@@ -57,7 +57,6 @@ public class TestListStudentAction implements Action {
 
 		if (student == null) {
 			// 学生が見つからなかった場合の処理
-			List<TestListStudent> testResults = null;
 			return "test_list_student.jsp";
 		}
 

@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/common/base.jsp">
-	<c:param name="content" value="
+	<c:param name="content">
 		<section class='me-4 text-start'>
 			<h2 class='h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold'>メニュー</h2>
 			<div class='d-flex justify-content-evenly mt-4' style='gap: 10px;'>
@@ -32,5 +32,5 @@
 				</div>
 			</div>
 		</section>
-	"/>
+	</c:param>
 </c:import>
