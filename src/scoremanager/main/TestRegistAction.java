@@ -54,8 +54,12 @@ public class TestRegistAction implements Action {
 		String subject = request.getParameter("f3");
 		String test_num = request.getParameter("f4");
 
-		if (entYearStr != null && classNum != null && subject != null && test_num != null) {
+		request.setAttribute("f1", entYearStr);
+		request.setAttribute("f2", classNum);
+		request.setAttribute("f3", subject);
+		request.setAttribute("f4", test_num);
 
+		if (entYearStr != null && classNum != null && subject != null && test_num != null) {
 			if (!entYearStr.equals("0") && !classNum.equals("0") && !subject.equals("0") && !test_num.equals("0")) {
 
 				Subject subject_set = sDao.get(teacher.getSchool(), subject);
@@ -68,11 +72,6 @@ public class TestRegistAction implements Action {
 				request.setAttribute("num", num);
 				request.setAttribute("subject", subject_set);
 				request.setAttribute("tests", tests);
-
-				request.setAttribute("f1", entYear);
-				request.setAttribute("f2", classNum);
-				request.setAttribute("f3", subject);
-				request.setAttribute("f4", num);
 
 			} else {
 				Map<String, String> errors = new HashMap<>();
