@@ -1,37 +1,46 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ClassNum;
 import bean.School;
 import bean.Student;
 import bean.Teacher;
+import dao.ClassNumDAO;
 import dao.StudentDAO;
 import tool.Action;
 import utils.Utils;
 
 public class StudentUpdateAction implements Action {
 	@Override
-    public boolean loginRequire() {
-        return true;
-    }
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	Teacher user = Utils.getUser(request);
-        School school = user.getSchool();
+	public boolean loginRequire() {
+		return true;
+	}
 
-        String no = request.getParameter("no");
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Teacher user = Utils.getUser(request);
+		School school = user.getSchool();
 
-        StudentDAO dao = new StudentDAO();
-        Student student = dao.get(school, no);
+		String no = request.getParameter("no");
 
-        List<String> classNums = dao.getClassNumList(school);
+		StudentDAO stDao = new StudentDAO();
+		ClassNumDAO cnDao = new ClassNumDAO();
 
-        request.setAttribute("student", student);
-        request.setAttribute("classNums", classNums);
+		Student student = stDao.get(school, no);
 
-        return "student_update.jsp";
-    }
+		List<String> classNums = new ArrayList<>();
+		for (ClassNum cn : cnDao.filter(school)) {
+			classNums.add(cn.getClass_num());
+		}
+
+		request.setAttribute("student", student);
+		request.setAttribute("classNums", classNums);
+
+		return "student_update.jsp";
+	}
 }

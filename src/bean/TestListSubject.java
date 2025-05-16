@@ -4,57 +4,57 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class TestListSubject implements Serializable {
-    private int entYear;
-    private String studentNo;
-    private String studentName;
-    private String classNum;
-    private Map<Integer, Integer> points;
+	private int entYear;
+	private String studentNo;
+	private String studentName;
+	private String classNum;
+	private Map<Integer, Integer> points;
 
-    public int getEntYear() {
-        return entYear;
-    }
+	public int getEntYear() {
+		return entYear;
+	}
 
-    public String getStudentNo() {
-        return studentNo;
-    }
+	public String getStudentNo() {
+		return studentNo;
+	}
 
-    public String getStudentName() {
-        return studentName;
-    }
+	public String getStudentName() {
+		return studentName;
+	}
 
-    public String getClassNum() {
-        return classNum;
-    }
+	public String getClassNum() {
+		return classNum;
+	}
 
-    public Map<Integer, Integer> getPoints() {
-        return points;
-    }
+	public Map<Integer, Integer> getPoints() {
+		return points;
+	}
 
-    public int getPoint(int key) {
-        return points.get(key);
-    }
+	public int getPoint(int key) {
+		return points.get(key);
+	}
 
-    public void setEntYear(int entYear) {
-        this.entYear = entYear;
-    }
+	public void setEntYear(int entYear) {
+		this.entYear = entYear;
+	}
 
-    public void setStudentNo(String studentNo) {
-        this.studentNo = studentNo;
-    }
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
+	}
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
-    public void setClassNum(String classNum) {
-        this.classNum = classNum;
-    }
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
+	}
 
-    public void setPoints(Map<Integer, Integer> points) {
-        this.points = points;
-    }
+	public void setPoints(Map<Integer, Integer> points) {
+		this.points = points;
+	}
 
-    public void putPoint(int key, int value) {
-        this.points.put(key, value);
-    }
+	public void putPoint(int key, int value) {
+		this.points.put(key, value);
+	}
 }
