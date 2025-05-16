@@ -111,10 +111,10 @@
 						placeholder="氏名を入力してください" value="${param.name}" required>
 
 					<label>クラス</label> <select name="classnum">
-                        <c:forEach var="classNum" items="${classNums}">
-                            <option value="${classNum}" <c:if test="${student.classNum == classNum}">selected</c:if>>${classNum}</option>
-                        </c:forEach>
-                    </select>
+						<c:forEach var="classNum" items="${classNums}">
+							<option value="${classNum}" <c:if test="${student.classNum == classNum}">selected</c:if>>${classNum}</option>
+						</c:forEach>
+					</select>
 					<button type="submit" class="submit-btn" name="end">登録して終了</button>
 					<div>
 						<a href="StudentList.action" class="back-link">戻る</a>

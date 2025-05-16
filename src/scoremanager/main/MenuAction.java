@@ -7,16 +7,16 @@ import tool.Action;
 
 public class MenuAction implements Action {
 
-    @Override
-    public boolean loginRequire() {
+	@Override
+	public boolean loginRequire() {
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // menu.jspに遷移
-        return "menu.jsp";
-    }
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// menu.jspに遷移
+		return "menu.jsp";
+	}
 }
 

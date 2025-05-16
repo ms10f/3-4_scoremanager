@@ -41,15 +41,15 @@ public class TestRegistExecuteAction implements Action {
 			inputPoints.put(studentNo, pointStr);
 			boolean isDelete = request.getParameter("delete_" + studentNo) != null;
 
-	        int point;
-	        if (isDelete) {
-	            point = -1;  // 削除の場合は -1
-	        } else {
-	            if (pointStr == null || pointStr.isEmpty()) {
-	                continue;  // 点数が空の場合は処理しない
-	            }
-	            point = Integer.parseInt(pointStr);  // 通常の点数を設定
-	        }
+			int point;
+			if (isDelete) {
+				point = -1;  // 削除の場合は -1
+			} else {
+				if (pointStr == null || pointStr.isEmpty()) {
+					continue;  // 点数が空の場合は処理しない
+				}
+				point = Integer.parseInt(pointStr);  // 通常の点数を設定
+			}
 
 			StudentDAO studentDao = new StudentDAO();
 

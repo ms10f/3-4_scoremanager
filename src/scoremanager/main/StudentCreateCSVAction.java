@@ -19,67 +19,67 @@ import utils.Utils;
 import bean.CSVReadedData;
 
 public class StudentCreateCSVAction implements Action {
-    @Override
-    public boolean loginRequire() {
-        return true;
-    }
+	@Override
+	public boolean loginRequire() {
+		return true;
+	}
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Teacher user = Utils.getUser(request);
-        School school = user.getSchool();
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Teacher user = Utils.getUser(request);
+		School school = user.getSchool();
 
-        if (request.getContentType() != null && request.getContentType().startsWith("multipart/form-data")) {
-            List<CSVReadedData> readedDatas = loadFile(request);
-            request.setAttribute("readed", readedDatas);
+		if (request.getContentType() != null && request.getContentType().startsWith("multipart/form-data")) {
+			List<CSVReadedData> readedDatas = loadFile(request);
+			request.setAttribute("readed", readedDatas);
 
-            ClassNumDAO dao = new ClassNumDAO();
-            List<String> classNums = new ArrayList<>();
-            for (ClassNum classNum : dao.filter(school)) {
-                classNums.add(classNum.getClass_num());
-            }
-            request.setAttribute("classNums", classNums);
-        }
+			ClassNumDAO dao = new ClassNumDAO();
+			List<String> classNums = new ArrayList<>();
+			for (ClassNum classNum : dao.filter(school)) {
+				classNums.add(classNum.getClass_num());
+			}
+			request.setAttribute("classNums", classNums);
+		}
 
-        return "student_create_csv.jsp";
-    }
+		return "student_create_csv.jsp";
+	}
 
-    private List<CSVReadedData> loadFile(HttpServletRequest request) throws Exception {
-        Part file = request.getPart("csv_file");
-        if (file == null) {
-            return null;
-        }
+	private List<CSVReadedData> loadFile(HttpServletRequest request) throws Exception {
+		Part file = request.getPart("csv_file");
+		if (file == null) {
+			return null;
+		}
 
-        List<CSVReadedData> result = new ArrayList<>();
+		List<CSVReadedData> result = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
 
-        String line;
-        while ((line = reader.readLine()) != null) {
-            line = line.trim();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			line = line.trim();
 
-            String[] cols = line.split("\\s*,\\s*");
+			String[] cols = line.split("\\s*,\\s*");
 
-            CSVReadedData readed = new CSVReadedData();
-            result.add(readed);
+			CSVReadedData readed = new CSVReadedData();
+			result.add(readed);
 
-            // 行が空なら入力可能な空行として処理
-            if (line.isEmpty()) {
-                continue;
-            }
+			// 行が空なら入力可能な空行として処理
+			if (line.isEmpty()) {
+				continue;
+			}
 
-            // エラー処理
-            if (cols.length != 4) {
-                readed.setError("項目数は4である必要があります (" + line + ")");
-                continue;
-            }
+			// エラー処理
+			if (cols.length != 4) {
+				readed.setError("項目数は4である必要があります (" + line + ")");
+				continue;
+			}
 
-            readed.setEntYear(cols[0]);
-            readed.setNo(cols[1]);
-            readed.setName(cols[2]);
-            readed.setClassNum(cols[3]);
-        }
+			readed.setEntYear(cols[0]);
+			readed.setNo(cols[1]);
+			readed.setName(cols[2]);
+			readed.setClassNum(cols[3]);
+		}
 
-        return result;
-    }
+		return result;
+	}
 }

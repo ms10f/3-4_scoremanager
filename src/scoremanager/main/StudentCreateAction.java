@@ -13,22 +13,22 @@ import utils.Utils;
 
 public class StudentCreateAction implements Action{
 	public boolean loginRequire() {
-        return true;
-    }
+		return true;
+	}
 
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	Teacher user = Utils.getUser(request);
-        School school = user.getSchool();
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Teacher user = Utils.getUser(request);
+		School school = user.getSchool();
 
-        String no = request.getParameter("no");
+		String no = request.getParameter("no");
 
-        StudentDAO dao = new StudentDAO();
-        Student student = dao.get(school, no);
+		StudentDAO dao = new StudentDAO();
+		Student student = dao.get(school, no);
 
-        List<String> classNums = dao.getClassNumList(school);
+		List<String> classNums = dao.getClassNumList(school);
 
-        request.setAttribute("student", student);
-        request.setAttribute("classNums", classNums);
-        return "student_create.jsp";
-    }
+		request.setAttribute("student", student);
+		request.setAttribute("classNums", classNums);
+		return "student_create.jsp";
+	}
 }
