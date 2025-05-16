@@ -12,7 +12,7 @@
 			<div class="px-4 mb-3">
 				<form method="get" action="StudentList.action" class="row g-3 align-items-center">
 					<div class="col-auto">
-						<label class="form-label">入学年度：</label>
+						<label class="form-label">入学年度</label>
 						<select name="entYear" class="form-select">
 							<option value="">------</option>
 							<c:forEach var="year" items="${entYears}">
@@ -22,7 +22,7 @@
 					</div>
 
 					<div class="col-auto">
-						<label class="form-label">クラス：</label>
+						<label class="form-label">クラス</label>
 						<select name="classNo" class="form-select">
 							<option value="">------</option>
 							<c:forEach var="classNum" items="${classNums}">
@@ -39,7 +39,7 @@
 					</div>
 
 					<div class="col-auto">
-						<button type="submit" class="btn btn-primary">絞込み</button>
+						<button type="submit" class="btn btn-secondary">絞込み</button>
 					</div>
 				</form>
 			</div>
@@ -57,7 +57,7 @@
 									<th>氏名</th>
 									<th>クラス</th>
 									<th>在学中</th>
-									<th>操作</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -75,7 +75,7 @@
 						</table>
 					</c:when>
 					<c:otherwise>
-						<p class="text-danger">学生情報は存在しません。</p>
+						<p>学生情報が存在しませんでした</p>
 					</c:otherwise>
 				</c:choose>
 			</div>
