@@ -62,7 +62,7 @@
 		</style>
 
 		<script>
-			// 学生番号は反悪に強制変換
+			// 学生番号は半角に強制変換
 			function enforceHalfWidth(input) {
 				input.value = input.value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(ch) {
 					return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
@@ -87,8 +87,9 @@
 					<label>入学年度</label> <select name="ent_year">
 						<option value="">--------</option>
 						<c:forEach var="year" begin="2015" end="2035">
-							<option value="${year}"
-								<c:if test="${param.ent_year == year}">selected</c:if>>${year}</option>
+							<option value="${year}" <c:if test="${param.ent_year == year}">selected</c:if>>
+								${year}
+							</option>
 						</c:forEach>
 					</select>
 
@@ -100,7 +101,7 @@
 
 					<label style="margin-top: 10px;">学生番号</label> <input type="text"
 						name="no" id="studentNumber" placeholder="学生番号を入力してください"
-						value="${param.no}" required>
+						value="${param.no}" required maxlength="10">
 					<div class="text-warning">
 						<c:forEach var="er" items="${errors.no}">
 							<c:out value="${er}" />
@@ -108,7 +109,7 @@
 					</div>
 
 					<label>氏名</label> <input type="text" name="name"
-						placeholder="氏名を入力してください" value="${param.name}" required>
+						placeholder="氏名を入力してください" value="${param.name}" required maxlength="30">
 
 					<label>クラス</label> <select name="classnum">
 						<c:forEach var="classNum" items="${classNums}">
