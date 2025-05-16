@@ -22,7 +22,7 @@
 
 				<div class="mb-3">
 					<label for="name" class="form-label">氏名</label>
-					<input type="text" class="form-control" id="name" name="name" value="${student.name}" placeholder="氏名を入力してください" maxlength="50" required>
+					<input type="text" class="form-control" id="name" name="name" value="${student.name}" placeholder="氏名を入力してください" maxlength="30" required>
 				</div>
 
 				<div class="mb-3">
@@ -39,7 +39,7 @@
 					<label class="form-check-label" for="isAttend">在学中</label>
 				</div>
 
-				<input type="submit" class="btn btn-primary mb-3" value="更新" />
+				<input type="submit" class="btn btn-primary mb-3" value="変更" />
 			</form>
 
 			<a href="StudentList.action" class="btn btn-link">戻る</a>
