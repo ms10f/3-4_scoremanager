@@ -75,8 +75,15 @@
 						</table>
 					</c:when>
 					<c:otherwise>
-						<p>学生情報が存在しませんでした</p>
-					</c:otherwise>
+        				<c:choose>
+            				<c:when test="${not empty error}">
+                				<p class="text-danger fw-bold">${error}</p>
+            				</c:when>
+            				<c:otherwise>
+                				<p class="text-danger">学生情報は存在しません。</p>
+            				</c:otherwise>
+        				</c:choose>
+    				</c:otherwise>
 				</c:choose>
 			</div>
 		</section>

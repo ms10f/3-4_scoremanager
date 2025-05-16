@@ -87,7 +87,11 @@
 						</table>
 						<input type="hidden" name="subject_cd" value="${subject.cd}" />
 						<input type="hidden" name="num" value="${num}" />
-						<input type="submit" value="登録して終了">
+						<input type="hidden" id="reinput" name="reinput" value="0">
+						<div class="text-start">
+							<input type="submit" onclick='document.getElementById("reinput").value = 0' class="btn btn-secondary" value="登録して終了">
+							<input type="submit" onclick='document.getElementById("reinput").value = 1' class="btn btn-secondary ms-5" value="登録して再入力">
+						</div>
 					</c:when>
 				</c:choose>
 			</form>

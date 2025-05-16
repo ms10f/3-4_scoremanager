@@ -43,12 +43,12 @@ public class TestRegistExecuteAction implements Action {
 
 			int point;
 			if (isDelete) {
-				point = -1;  // 削除の場合は -1
+				point = -1; // 削除の場合は -1
 			} else {
 				if (pointStr == null || pointStr.isEmpty()) {
-					continue;  // 点数が空の場合は処理しない
+					continue; // 点数が空の場合は処理しない
 				}
-				point = Integer.parseInt(pointStr);  // 通常の点数を設定
+				point = Integer.parseInt(pointStr); // 通常の点数を設定
 			}
 
 			StudentDAO studentDao = new StudentDAO();
@@ -63,6 +63,14 @@ public class TestRegistExecuteAction implements Action {
 
 		TestDAO testDao = new TestDAO();
 		testDao.save(gradeList);
+
+		// 登録して再入力
+		String reinputPara = request.getParameter("reinput");
+		boolean isReinput = reinputPara != null && reinputPara.equals("1");
+
+		if (isReinput) {
+			return "TestRegist.action";
+		}
 
 		return "test_regist_done.jsp";
 	}
