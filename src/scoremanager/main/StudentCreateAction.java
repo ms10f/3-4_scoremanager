@@ -1,17 +1,21 @@
 package scoremanager.main;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ClassNum;
 import bean.School;
 import bean.Student;
 import bean.Teacher;
+import dao.ClassNumDAO;
 import dao.StudentDAO;
 import tool.Action;
 import utils.Utils;
 
-public class StudentCreateAction implements Action{
+public class StudentCreateAction implements Action {
 	public boolean loginRequire() {
 		return true;
 	}
@@ -22,10 +26,14 @@ public class StudentCreateAction implements Action{
 
 		String no = request.getParameter("no");
 
-		StudentDAO dao = new StudentDAO();
-		Student student = dao.get(school, no);
+		StudentDAO stDao = new StudentDAO();
+		ClassNumDAO cnDao = new ClassNumDAO();
+		Student student = stDao.get(school, no);
 
-		List<String> classNums = dao.getClassNumList(school);
+		List<String> classNums = new ArrayList<>();
+		for (ClassNum cn : cnDao.filter(school)) {
+			classNums.add(cn.getClass_num());
+		}
 
 		request.setAttribute("student", student);
 		request.setAttribute("classNums", classNums);

@@ -200,21 +200,4 @@ public class StudentDAO extends DAO {
 
 		return years;
 	}
-
-	public List<String> getClassNumList(School school) throws Exception {
-		String sql = "SELECT DISTINCT class_num FROM student WHERE school_cd = ? ORDER BY class_num";
-		List<String> classes = new ArrayList<>();
-
-		try (Connection con = getConnection(); PreparedStatement st = con.prepareStatement(sql)) {
-			st.setString(1, school.getCd());
-			try (ResultSet rs = st.executeQuery()) {
-				while (rs.next()) {
-					classes.add(rs.getString("class_num"));
-				}
-			}
-		}
-
-		return classes;
-	}
-
 }
