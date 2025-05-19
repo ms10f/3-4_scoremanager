@@ -10,7 +10,6 @@ import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
-import utils.Utils;
 
 public class SubjectListAction extends Action {
 	@Override
@@ -20,7 +19,7 @@ public class SubjectListAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		SubjectDAO dao = new SubjectDAO();

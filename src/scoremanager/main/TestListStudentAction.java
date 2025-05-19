@@ -17,7 +17,6 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestListStudentDAO;
 import tool.Action;
-import utils.Utils;
 
 public class TestListStudentAction extends Action {
 	@Override
@@ -27,7 +26,7 @@ public class TestListStudentAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		// パラメータ取得

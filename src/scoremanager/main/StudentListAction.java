@@ -13,7 +13,6 @@ import bean.Teacher;
 import dao.ClassNumDAO;
 import dao.StudentDAO;
 import tool.Action;
-import utils.Utils;
 
 public class StudentListAction extends Action {
 	@Override
@@ -26,7 +25,7 @@ public class StudentListAction extends Action {
 		StudentDAO stDao = new StudentDAO();
 		ClassNumDAO cnDao = new ClassNumDAO();
 
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		String entYearParam = request.getParameter("entYear");

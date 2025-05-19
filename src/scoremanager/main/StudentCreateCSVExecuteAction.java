@@ -26,7 +26,7 @@ public class StudentCreateCSVExecuteAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		ClassNumDAO cnDao = new ClassNumDAO();

@@ -13,7 +13,6 @@ import bean.Teacher;
 import dao.ClassNumDAO;
 import dao.SubjectDAO;
 import tool.Action;
-import utils.Utils;
 
 public class TestListAction extends Action {
 	@Override
@@ -23,7 +22,7 @@ public class TestListAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		if (user == null) {
 			// ユーザーがセッションに存在しない場合の処理
 			return "error.jsp";

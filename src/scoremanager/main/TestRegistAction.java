@@ -17,7 +17,6 @@ import dao.ClassNumDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
-import utils.Utils;
 
 public class TestRegistAction extends Action {
 	@Override
@@ -29,7 +28,7 @@ public class TestRegistAction extends Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		ClassNumDAO cNumDao = new ClassNumDAO();
-		Teacher teacher = Utils.getUser(request);
+		Teacher teacher = getUser(request);
 		List<ClassNum> class_list = cNumDao.filter(teacher.getSchool());
 
 		SubjectDAO sDao = new SubjectDAO();

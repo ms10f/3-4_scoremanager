@@ -16,7 +16,6 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
-import utils.Utils;
 
 public class TestRegistExecuteAction extends Action {
 	@Override
@@ -27,7 +26,7 @@ public class TestRegistExecuteAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		Teacher teacher = Utils.getUser(request);
+		Teacher teacher = getUser(request);
 		School school = teacher.getSchool();
 
 		Map<String, String> inputPoints = new HashMap<>();

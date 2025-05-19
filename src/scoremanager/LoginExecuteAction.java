@@ -10,7 +10,6 @@ import bean.Teacher;
 import dao.TeacherDAO;
 import tool.Action;
 import utils.NamedErrors;
-import utils.Utils;
 
 public class LoginExecuteAction extends Action {
 	@Override
@@ -22,7 +21,7 @@ public class LoginExecuteAction extends Action {
 		Teacher teacher = dao.login(id, password);
 
 		if (teacher != null) {
-			Utils.setUser(request, teacher);
+			setUser(request, teacher);
 
 			// メニュー画面にリダイレクト
 			response.sendRedirect("main/Menu.action");
