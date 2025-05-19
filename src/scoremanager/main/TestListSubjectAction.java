@@ -15,6 +15,7 @@ import dao.ClassNumDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
+import utils.Utils;
 
 public class TestListSubjectAction implements Action {
 	@Override
@@ -24,7 +25,7 @@ public class TestListSubjectAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = (Teacher) request.getSession().getAttribute("teacher");
+		Teacher user = Utils.getUser(request);
 		if (user == null) {
 			// ユーザーがセッションに存在しない場合の処理
 			return "error.jsp";

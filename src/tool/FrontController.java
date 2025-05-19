@@ -48,7 +48,11 @@ public class FrontController extends HttpServlet {
 		// 失敗すればエラーページ
 		try {
 			String url = action.execute(request, response);
+
 			if (!(url == null || url.isEmpty())) {
+				// ログイン情報をJSPから使用できるように (action内で変更される可能性があるのでforward直前)
+				request.setAttribute("user", Utils.getUser(request));
+
 				request.getRequestDispatcher(url).forward(request, response);
 			}
 		} catch (NumberFormatException e) {

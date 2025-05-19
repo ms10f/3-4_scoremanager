@@ -15,14 +15,14 @@
 		<div id="header" class="border-bottom bg-primary py-3 px-5 bg-opacity-10">
 			<div class="position-relative">
 				<h1 class="h1 fw-bold">得点管理システム</h1>
-				<c:if test="${!empty teacher}">
-					<div id="user" class="position-absolute"><span>${teacher.name}様</span>&emsp;<a href="${contextPath}/scoremanager/main/Logout.action">ログアウト</a></div>
+				<c:if test="${!empty user}">
+					<div id="user" class="position-absolute"><span>${user.name}様</span>&emsp;<a href="${contextPath}/scoremanager/main/Logout.action">ログアウト</a></div>
 				</c:if>
 			</div>
 		</div>
 		<div id="body" class="my-4">
 			<div id="sidebar">
-				<c:if test="${!empty teacher}">
+				<c:if test="${!empty user}">
 					<nav class="border-end pt-4 me-3 h-100">
 						<ul>
 							<li><p><a href="${contextPath}/scoremanager/main/Menu.action">メニュー</a></p></li>

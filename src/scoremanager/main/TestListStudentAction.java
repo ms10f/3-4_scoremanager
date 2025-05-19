@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
 import bean.School;
@@ -18,6 +17,7 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestListStudentDAO;
 import tool.Action;
+import utils.Utils;
 
 public class TestListStudentAction implements Action {
 	@Override
@@ -27,8 +27,7 @@ public class TestListStudentAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		Teacher user = (Teacher) session.getAttribute("teacher");
+		Teacher user = Utils.getUser(request);
 		School school = user.getSchool();
 
 		// パラメータ取得
