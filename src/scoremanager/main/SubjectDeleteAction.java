@@ -10,7 +10,7 @@ import dao.SubjectDAO;
 import tool.Action;
 import utils.Utils;
 
-public class SubjectDeleteAction implements Action {
+public class SubjectDeleteAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

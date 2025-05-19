@@ -11,7 +11,7 @@ import tool.Action;
 import utils.NamedErrors;
 import utils.Utils;
 
-public class SubjectCreateExecuteAction implements Action {
+public class SubjectCreateExecuteAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

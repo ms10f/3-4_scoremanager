@@ -10,7 +10,7 @@ import dao.SubjectDAO;
 import tool.Action;
 import utils.Utils;
 
-public class SubjectUpdateAction implements Action {
+public class SubjectUpdateAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

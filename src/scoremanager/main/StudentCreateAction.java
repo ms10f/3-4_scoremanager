@@ -15,11 +15,13 @@ import dao.StudentDAO;
 import tool.Action;
 import utils.Utils;
 
-public class StudentCreateAction implements Action {
+public class StudentCreateAction extends Action {
+	@Override
 	public boolean loginRequire() {
 		return true;
 	}
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Teacher user = Utils.getUser(request);
 		School school = user.getSchool();

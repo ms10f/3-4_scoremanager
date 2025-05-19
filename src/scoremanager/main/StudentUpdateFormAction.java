@@ -10,7 +10,7 @@ import dao.StudentDAO;
 import tool.Action;
 import utils.Utils;
 
-public class StudentUpdateFormAction implements Action {
+public class StudentUpdateFormAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

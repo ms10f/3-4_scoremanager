@@ -11,11 +11,13 @@ import tool.Action;
 import utils.NamedErrors;
 import utils.Utils;
 
-public class StudentCreateExecuteAction implements Action {
+public class StudentCreateExecuteAction extends Action {
+	@Override
 	public boolean loginRequire() {
 		return true;
 	}
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Teacher user = Utils.getUser(request);
 		School school = user.getSchool();

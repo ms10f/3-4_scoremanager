@@ -12,7 +12,7 @@ import tool.Action;
 import utils.NamedErrors;
 import utils.Utils;
 
-public class LoginExecuteAction implements Action {
+public class LoginExecuteAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("id");

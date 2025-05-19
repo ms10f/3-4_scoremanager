@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.Action;
 
-public class SubjectCreateAction implements Action {
+public class SubjectCreateAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

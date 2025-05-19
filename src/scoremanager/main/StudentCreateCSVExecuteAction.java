@@ -18,7 +18,7 @@ import tool.Action;
 import bean.CSVReadedData;
 import utils.Utils;
 
-public class StudentCreateCSVExecuteAction implements Action {
+public class StudentCreateCSVExecuteAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

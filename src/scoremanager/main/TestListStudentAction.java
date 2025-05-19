@@ -19,7 +19,7 @@ import dao.TestListStudentDAO;
 import tool.Action;
 import utils.Utils;
 
-public class TestListStudentAction implements Action {
+public class TestListStudentAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

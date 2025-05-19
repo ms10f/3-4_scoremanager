@@ -15,7 +15,7 @@ import dao.SubjectDAO;
 import tool.Action;
 import utils.Utils;
 
-public class TestListAction implements Action {
+public class TestListAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;

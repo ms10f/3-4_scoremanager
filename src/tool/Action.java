@@ -3,15 +3,15 @@ package tool;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface Action {
+public abstract class Action {
 	/**
 	 * ログイン必須ページかどうかを返す
 	 * 
 	 * @return
 	 */
-	public default boolean loginRequire() {
+	public boolean loginRequire() {
 		return false;
 	}
 
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public abstract String execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

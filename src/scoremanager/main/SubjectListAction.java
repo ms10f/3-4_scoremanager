@@ -12,7 +12,7 @@ import dao.SubjectDAO;
 import tool.Action;
 import utils.Utils;
 
-public class SubjectListAction implements Action {
+public class SubjectListAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
