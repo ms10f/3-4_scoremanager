@@ -19,6 +19,10 @@ import tool.Action;
 import utils.Utils;
 
 public class TestRegistExecuteAction implements Action {
+	@Override
+	public boolean loginRequire() {
+		return true;
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
