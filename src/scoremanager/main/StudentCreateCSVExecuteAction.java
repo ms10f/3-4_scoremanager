@@ -121,8 +121,14 @@ public class StudentCreateCSVExecuteAction extends Action {
 			students.put(noPara, student);
 		}
 
-		// 何れかでエラーが出ているなら、追加ページに戻る
-		if (hasError) {
+		// 何れかでエラーが出ているか、登録される学生が0人なら、登録ページに戻る
+		if (hasError || students.size() == 0) {
+			// 0人なのにエラーが無い場合、何も送られなかったとして、登録ページ戻る
+			if (!hasError) {
+				response.sendRedirect("StudentCreateCSV.action");
+				return null;
+			}
+
 			List<String> classNums = new ArrayList<>();
 			for (ClassNum classNum : cnDao.filter(school)) {
 				classNums.add(classNum.getClass_num());
@@ -133,7 +139,7 @@ public class StudentCreateCSVExecuteAction extends Action {
 			return "student_create_csv.jsp";
 		}
 
-		// 学生をデータベースに追加する
+		// 学生をデータベースに登録する
 		// 成功と失敗の学生をそれぞれ記録する
 		List<Student> sucStudents = new ArrayList<>();
 		List<Student> failStudents = new ArrayList<>();

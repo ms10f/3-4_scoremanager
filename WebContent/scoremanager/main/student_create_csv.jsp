@@ -2,6 +2,25 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <c:import url="/common/base.jsp">
+	<c:param name="head">
+		<c:if test="${!empty readed}">
+		<script>
+		{
+			let postLen = ${readed.size()};
+			function removeElement(target) {
+				target.parentElement.parentElement.remove();
+				postLen--;
+				document.getElementById("post-student-length").innerText = postLen + "件";
+
+				if (postLen <= 0) {
+					document.getElementById("regist_button").disabled = true;
+				}
+			}
+		}
+		</script>
+		</c:if>
+	</c:param>
+
 	<c:param name="content">
 		<section class="_mh-40 me-4 text-start">
 			<h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4 fw-bold">学生情報登録</h2>
@@ -20,7 +39,7 @@
 
 			<c:if test="${!empty readed}">
 				<form action="StudentCreateCSVExecute.action" method="post" class="mb-3">
-					<div>${readed.size()}件</div>
+					<div id="post-student-length">${readed.size()}件</div>
 					<table class="table table-hover">
 						<tr>
 							<th>入学年度</th>
@@ -50,12 +69,12 @@
 										</c:forEach>
 									</select>
 								</td>
-								<td style="place-content:center;"><a href="javascript:void(0)" onclick="this.parentElement.parentElement.remove()">削除</a></td>
+								<td style="place-content:center;"><a href="javascript:void(0)" onclick="removeElement(this)">削除</a></td>
 							</tr>
 						</c:forEach>
 					</table>
 					<input type="hidden" name="count" value="${readed.size()}">
-					<input type="submit" class="btn btn-primary" value="登録">
+					<input type="submit" id="regist_button" class="btn btn-primary" value="登録">
 				</form>
 			</c:if>
 			<a href="StudentCreate.action" class="d-inline-block mt-5">戻る</a>
