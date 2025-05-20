@@ -10,7 +10,7 @@
 			<form action="TestRegist.action" method="get">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 					<div class="col-2">
-						<label class="form-label" for="student-f1-select" >入学年度 </label>
+						<label class="form-label" for="student-f1-select" style="text-align: left; display: block;">入学年度 </label>
 						<select class="form-select" id="student-f1-select" name="f1">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
