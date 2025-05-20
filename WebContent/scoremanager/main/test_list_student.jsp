@@ -107,36 +107,43 @@
 				</form>
 			</div>
 
-			<c:if test="${empty testResults}">
-				<div class="text-start">
-					<p>学生情報が見つかりませんでした</p>
-				</div>
-			</c:if>
-
-			<c:if test="${not empty testResults}">
+			<c:if test="${!empty studentCd}">
 				<h3 class="text-start fs-6">氏名：${studentName}（${studentCd}）</h3>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>科目名</th>
-							<th>科目コード</th>
-							<th>回数</th>
-							<th>得点</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="result" items="${testResults}">
-							<tr>
-								<td>${result.subjectName}</td>
-								<td>${result.subjectCd}</td>
-								<td>${result.num}</td>
-								<td>${result.point}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
 			</c:if>
-
+			<c:choose>
+				<c:when test="${!empty testResults}">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>科目名</th>
+								<th>科目コード</th>
+								<th>回数</th>
+								<th>得点</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="result" items="${testResults}">
+								<tr>
+									<td>${result.subjectName}</td>
+									<td>${result.subjectCd}</td>
+									<td>${result.num}</td>
+									<td>${result.point}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:when test="${!empty studentCd}">
+					<div class="text-start">
+						<p>成績情報が見つかりませんでした</p>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="text-start">
+						<p>学生情報が見つかりませんでした</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</section>
 	</c:param>
 </c:import>

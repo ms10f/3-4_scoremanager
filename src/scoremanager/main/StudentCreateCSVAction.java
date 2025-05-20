@@ -15,10 +15,9 @@ import bean.School;
 import bean.Teacher;
 import dao.ClassNumDAO;
 import tool.Action;
-import utils.Utils;
 import bean.CSVReadedData;
 
-public class StudentCreateCSVAction implements Action {
+public class StudentCreateCSVAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -26,7 +25,7 @@ public class StudentCreateCSVAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		if (request.getContentType() != null && request.getContentType().startsWith("multipart/form-data")) {

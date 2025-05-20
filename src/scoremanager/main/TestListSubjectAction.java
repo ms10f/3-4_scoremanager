@@ -1,5 +1,6 @@
 package scoremanager.main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
 
-public class TestListSubjectAction implements Action {
+public class TestListSubjectAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -24,7 +25,7 @@ public class TestListSubjectAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = (Teacher) request.getSession().getAttribute("teacher");
+		Teacher user = getUser(request);
 		if (user == null) {
 			// ユーザーがセッションに存在しない場合の処理
 			return "error.jsp";
@@ -53,8 +54,11 @@ public class TestListSubjectAction implements Action {
 		List<Subject> subjectList = subjectDAO.filter(school);
 
 		// 入学年度リスト(2015〜2035）
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
 		List<Integer> entYears = new ArrayList<>();
-		for (int i = 2015; i <= 2035; i++) {
+
+		for (int i = year - 10; i < year + 11; i++) {
 			entYears.add(i);
 		}
 

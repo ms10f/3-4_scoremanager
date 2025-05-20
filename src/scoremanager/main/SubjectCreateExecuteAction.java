@@ -9,9 +9,8 @@ import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
 import utils.NamedErrors;
-import utils.Utils;
 
-public class SubjectCreateExecuteAction implements Action {
+public class SubjectCreateExecuteAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -19,7 +18,7 @@ public class SubjectCreateExecuteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		SubjectDAO dao = new SubjectDAO();

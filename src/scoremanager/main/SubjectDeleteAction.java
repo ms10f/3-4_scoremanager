@@ -8,9 +8,8 @@ import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
-import utils.Utils;
 
-public class SubjectDeleteAction implements Action {
+public class SubjectDeleteAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -18,7 +17,7 @@ public class SubjectDeleteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		SubjectDAO dao = new SubjectDAO();

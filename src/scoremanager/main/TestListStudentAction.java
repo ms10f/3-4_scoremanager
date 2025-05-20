@@ -1,11 +1,11 @@
 package scoremanager.main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
 import bean.School;
@@ -19,7 +19,7 @@ import dao.SubjectDAO;
 import dao.TestListStudentDAO;
 import tool.Action;
 
-public class TestListStudentAction implements Action {
+public class TestListStudentAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -27,8 +27,7 @@ public class TestListStudentAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();
-		Teacher user = (Teacher) session.getAttribute("teacher");
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		// パラメータ取得
@@ -39,8 +38,11 @@ public class TestListStudentAction implements Action {
 		Student student = studentDAO.get(school, studentCd);
 
 		// 入学年度リスト(2015〜2035）
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
 		List<Integer> entYears = new ArrayList<>();
-		for (int i = 2015; i <= 2035; i++) {
+
+		for (int i = year - 10; i < year + 11; i++) {
 			entYears.add(i);
 		}
 		request.setAttribute("f1", entYears);

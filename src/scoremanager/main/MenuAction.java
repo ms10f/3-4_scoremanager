@@ -5,11 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.Action;
 
-public class MenuAction implements Action {
-
+public class MenuAction extends Action {
 	@Override
 	public boolean loginRequire() {
-
 		return true;
 	}
 
@@ -19,4 +17,3 @@ public class MenuAction implements Action {
 		return "menu.jsp";
 	}
 }
-

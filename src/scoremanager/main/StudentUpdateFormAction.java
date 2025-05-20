@@ -8,13 +8,13 @@ import bean.Student;
 import bean.Teacher;
 import dao.StudentDAO;
 import tool.Action;
-import utils.Utils;
 
-public class StudentUpdateFormAction implements Action {
+public class StudentUpdateFormAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
 	}
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// パラメータ取得
@@ -33,7 +33,7 @@ public class StudentUpdateFormAction implements Action {
 		student.setAttend(isAttend);
 
 		// 所属学校設定
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		student.setSchool(school);
@@ -49,6 +49,6 @@ public class StudentUpdateFormAction implements Action {
 			request.setAttribute("message", "学生情報の更新に失敗しました。");
 		}
 
-		return "student_update_result.jsp";  // ← 必要に応じて作成 or リダイレクト
+		return "student_update_result.jsp"; // ← 必要に応じて作成 or リダイレクト
 	}
 }

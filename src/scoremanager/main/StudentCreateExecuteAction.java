@@ -9,15 +9,16 @@ import bean.Teacher;
 import dao.StudentDAO;
 import tool.Action;
 import utils.NamedErrors;
-import utils.Utils;
 
-public class StudentCreateExecuteAction implements Action {
+public class StudentCreateExecuteAction extends Action {
+	@Override
 	public boolean loginRequire() {
 		return true;
 	}
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 		Student stu = new Student();
 		String ent_year = request.getParameter("ent_year");

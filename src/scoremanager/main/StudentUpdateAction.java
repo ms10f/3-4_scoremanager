@@ -13,9 +13,8 @@ import bean.Teacher;
 import dao.ClassNumDAO;
 import dao.StudentDAO;
 import tool.Action;
-import utils.Utils;
 
-public class StudentUpdateAction implements Action {
+public class StudentUpdateAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -23,7 +22,7 @@ public class StudentUpdateAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Teacher user = Utils.getUser(request);
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		String no = request.getParameter("no");

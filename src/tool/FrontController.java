@@ -1,9 +1,6 @@
 package tool;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import utils.Utils;
 
 @WebServlet("*.action")
 @MultipartConfig
@@ -37,7 +32,7 @@ public class FrontController extends HttpServlet {
 		}
 
 		// ログイン必須ページにログインせずにアクセス出来ないように
-		if (action.loginRequire() && Utils.getUser(request) == null) {
+		if (action.loginRequire() && Action.getUser(request) == null) {
 			String contextPath = (String) request.getAttribute("contextPath");
 			response.sendRedirect(contextPath + "/scoremanager/Login.action");
 
@@ -48,7 +43,11 @@ public class FrontController extends HttpServlet {
 		// 失敗すればエラーページ
 		try {
 			String url = action.execute(request, response);
+
 			if (!(url == null || url.isEmpty())) {
+				// ログイン情報をJSPから使用できるように (action内で変更される可能性があるのでforward直前)
+				request.setAttribute("user", Action.getUser(request));
+
 				request.getRequestDispatcher(url).forward(request, response);
 			}
 		} catch (NumberFormatException e) {
@@ -59,11 +58,11 @@ public class FrontController extends HttpServlet {
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			// その他のエラー
-			{ // デバッグ用にエラー文を表示する
-				Writer w = new StringWriter();
-				e.printStackTrace(new PrintWriter(w));
-				request.setAttribute("message", w.toString());
-			}
+			// { // デバッグ用にエラー文を表示する
+			// 	Writer w = new StringWriter();
+			// 	e.printStackTrace(new PrintWriter(w));
+			// 	request.setAttribute("message", w.toString());
+			// }
 
 			response.setStatus(500);
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
