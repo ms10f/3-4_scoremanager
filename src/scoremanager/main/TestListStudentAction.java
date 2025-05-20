@@ -1,11 +1,11 @@
 package scoremanager.main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
 import bean.School;
@@ -19,7 +19,7 @@ import dao.SubjectDAO;
 import dao.TestListStudentDAO;
 import tool.Action;
 
-public class TestListStudentAction implements Action {
+public class TestListStudentAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -27,49 +27,50 @@ public class TestListStudentAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	    HttpSession session = request.getSession();
-	    Teacher user = (Teacher) session.getAttribute("teacher");
-	    School school = user.getSchool();
+		Teacher user = getUser(request);
+		School school = user.getSchool();
 
-	    // パラメータ取得
-	    String studentCd = request.getParameter("f4");
+		// パラメータ取得
+		String studentCd = request.getParameter("f4");
 
-	    // 学生情報を取得
-	    StudentDAO studentDAO = new StudentDAO();
-	    Student student = studentDAO.get(school, studentCd);
+		// 学生情報を取得
+		StudentDAO studentDAO = new StudentDAO();
+		Student student = studentDAO.get(school, studentCd);
 
-	    // 入学年度リスト(2015〜2025）
-	    List<Integer> entYears = new ArrayList<>();
-	    for (int i = 2015; i <= 2025; i++) {
-	        entYears.add(i);
-	    }
-	    request.setAttribute("f1", entYears);
+		// 入学年度リスト(2015〜2035）
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
+		List<Integer> entYears = new ArrayList<>();
 
-	    // クラス一覧取得
-	    ClassNumDAO classNumDAO = new ClassNumDAO();
-	    List<ClassNum> classNums = classNumDAO.filter(school);
-	    request.setAttribute("f2", classNums);
+		for (int i = year - 10; i < year + 11; i++) {
+			entYears.add(i);
+		}
+		request.setAttribute("f1", entYears);
 
-	    // 科目リスト取得
-	    SubjectDAO subjectDAO = new SubjectDAO();
-	    List<Subject> subjects = subjectDAO.filter(school);
-	    request.setAttribute("f3", subjects);
+		// クラス一覧取得
+		ClassNumDAO classNumDAO = new ClassNumDAO();
+		List<ClassNum> classNums = classNumDAO.filter(school);
+		request.setAttribute("f2", classNums);
 
-	    if (student == null) {
-	        // 学生が見つからなかった場合の処理
-		    List<TestListStudent> testResults = null;
-		    return "test_list_student.jsp";
-	    }
+		// 科目リスト取得
+		SubjectDAO subjectDAO = new SubjectDAO();
+		List<Subject> subjects = subjectDAO.filter(school);
+		request.setAttribute("f3", subjects);
 
-	    // TestListStudentDAO 使用
-	    TestListStudentDAO testListStudentDAO = new TestListStudentDAO();
-	    List<TestListStudent> testResults = testListStudentDAO.filter(student);
+		if (student == null) {
+			// 学生が見つからなかった場合の処理
+			return "test_list_student.jsp";
+		}
 
-	    // JSPに渡す
-	    request.setAttribute("testResults", testResults);
-	    request.setAttribute("studentCd", studentCd);
-	    request.setAttribute("studentName", student.getName());
-	    return "test_list_student.jsp";
+		// TestListStudentDAO 使用
+		TestListStudentDAO testListStudentDAO = new TestListStudentDAO();
+		List<TestListStudent> testResults = testListStudentDAO.filter(student);
+
+		// JSPに渡す
+		request.setAttribute("testResults", testResults);
+		request.setAttribute("studentCd", studentCd);
+		request.setAttribute("studentName", student.getName());
+		return "test_list_student.jsp";
 	}
 
 }

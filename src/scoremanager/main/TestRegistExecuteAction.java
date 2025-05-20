@@ -16,14 +16,17 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
-import utils.Utils;
 
-public class TestRegistExecuteAction implements Action {
+public class TestRegistExecuteAction extends Action {
+	@Override
+	public boolean loginRequire() {
+		return true;
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		Teacher teacher = Utils.getUser(request);
+		Teacher teacher = getUser(request);
 		School school = teacher.getSchool();
 
 		Map<String, String> inputPoints = new HashMap<>();
@@ -41,15 +44,15 @@ public class TestRegistExecuteAction implements Action {
 			inputPoints.put(studentNo, pointStr);
 			boolean isDelete = request.getParameter("delete_" + studentNo) != null;
 
-	        int point;
-	        if (isDelete) {
-	            point = -1;  // 削除の場合は -1
-	        } else {
-	            if (pointStr == null || pointStr.isEmpty()) {
-	                continue;  // 点数が空の場合は処理しない
-	            }
-	            point = Integer.parseInt(pointStr);  // 通常の点数を設定
-	        }
+			int point;
+			if (isDelete) {
+				point = -1; // 削除の場合は -1
+			} else {
+				if (pointStr == null || pointStr.isEmpty()) {
+					continue; // 点数が空の場合は処理しない
+				}
+				point = Integer.parseInt(pointStr); // 通常の点数を設定
+			}
 
 			StudentDAO studentDao = new StudentDAO();
 
@@ -63,6 +66,14 @@ public class TestRegistExecuteAction implements Action {
 
 		TestDAO testDao = new TestDAO();
 		testDao.save(gradeList);
+
+		// 登録して再入力
+		String reinputPara = request.getParameter("reinput");
+		boolean isReinput = reinputPara != null && reinputPara.equals("1");
+
+		if (isReinput) {
+			return "TestRegist.action";
+		}
 
 		return "test_regist_done.jsp";
 	}

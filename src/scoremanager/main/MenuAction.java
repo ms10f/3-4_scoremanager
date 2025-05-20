@@ -5,18 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.Action;
 
-public class MenuAction implements Action {
+public class MenuAction extends Action {
+	@Override
+	public boolean loginRequire() {
+		return true;
+	}
 
-    @Override
-    public boolean loginRequire() {
-
-        return true;
-    }
-
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // menu.jspに遷移
-        return "menu.jsp";
-    }
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// menu.jspに遷移
+		return "menu.jsp";
+	}
 }
-

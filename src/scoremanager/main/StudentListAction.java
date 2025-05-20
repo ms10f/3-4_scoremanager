@@ -6,14 +6,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ClassNum;
 import bean.School;
 import bean.Student;
 import bean.Teacher;
+import dao.ClassNumDAO;
 import dao.StudentDAO;
 import tool.Action;
-import utils.Utils;
 
-public class StudentListAction implements Action {
+public class StudentListAction extends Action {
 	@Override
 	public boolean loginRequire() {
 		return true;
@@ -21,8 +22,10 @@ public class StudentListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		StudentDAO dao = new StudentDAO();
-		Teacher user = Utils.getUser(request);
+		StudentDAO stDao = new StudentDAO();
+		ClassNumDAO cnDao = new ClassNumDAO();
+
+		Teacher user = getUser(request);
 		School school = user.getSchool();
 
 		String entYearParam = request.getParameter("entYear");
@@ -35,29 +38,35 @@ public class StudentListAction implements Action {
 		boolean hasClass = classNum != null && !classNum.isEmpty();
 		// boolean hasEnroll = isEnrolledParam != null;
 
-		if (classNum == null && entYearParam == null) {
-			// パラメータが渡されない場合 → 在学・退学両方取得
-			students.addAll(dao.filter(school, true));
-			students.addAll(dao.filter(school, false));
+		if (hasClass && !hasEntYear) {
+			request.setAttribute("error", "クラスを指定する場合は入学年度も指定してください");
 		} else {
-			// 在学中チェックがある場合 → isAttend = true に絞る
-			boolean isAttend = "true".equals(isEnrolledParam);
-
-			if (hasEntYear && hasClass) {
-				int entYear = Integer.parseInt(entYearParam);
-				students = dao.filter(school, entYear, classNum, isAttend);
-			} else if (hasEntYear) {
-				int entYear = Integer.parseInt(entYearParam);
-				students = dao.filter(school, entYear, isAttend);
-			} else if (hasClass) {
-				students = dao.filter(school, classNum, isAttend);
+			// 学生一覧の取得
+			if (!hasEntYear && !hasClass && isEnrolledParam == null) {
+				// パラメータが渡されない場合 → 在学・退学両方取得
+				students.addAll(stDao.filter(school, true));
+				students.addAll(stDao.filter(school, false));
 			} else {
-				students = dao.filter(school, isAttend);
+				boolean isAttend = "true".equalsIgnoreCase(isEnrolledParam);
+				if (hasEntYear && hasClass) {
+					int entYear = Integer.parseInt(entYearParam);
+					students = stDao.filter(school, entYear, classNum, isAttend);
+				} else if (hasEntYear) {
+					int entYear = Integer.parseInt(entYearParam);
+					students = stDao.filter(school, entYear, isAttend);
+				} else if (hasClass) {
+					// この分岐には入らない（上でエラーを設定するため）
+				} else {
+					students = stDao.filter(school, isAttend);
+				}
 			}
 		}
 
-		List<Integer> entYears = dao.getEntYearList(school);
-		List<String> classNums = dao.getClassNumList(school);
+		List<Integer> entYears = stDao.getEntYearList(school);
+		List<String> classNums = new ArrayList<>();
+		for (ClassNum cn : cnDao.filter(school)) {
+			classNums.add(cn.getClass_num());
+		}
 
 		request.setAttribute("entYears", entYears);
 		request.setAttribute("classNums", classNums);

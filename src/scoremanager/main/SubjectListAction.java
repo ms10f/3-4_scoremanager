@@ -10,26 +10,25 @@ import bean.Subject;
 import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
-import utils.Utils;
 
-public class SubjectListAction implements Action {
-    @Override
-    public boolean loginRequire() {
-        return true;
-    }
+public class SubjectListAction extends Action {
+	@Override
+	public boolean loginRequire() {
+		return true;
+	}
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Teacher user = Utils.getUser(request);
-        School school = user.getSchool();
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Teacher user = getUser(request);
+		School school = user.getSchool();
 
-        SubjectDAO dao = new SubjectDAO();
+		SubjectDAO dao = new SubjectDAO();
 
-        // 科目一覧取得
-        List<Subject> subjects = dao.filter(school);
+		// 科目一覧取得
+		List<Subject> subjects = dao.filter(school);
 
-        request.setAttribute("subjects", subjects);
+		request.setAttribute("subjects", subjects);
 
-        return "subject_list.jsp";
-    }
+		return "subject_list.jsp";
+	}
 }
