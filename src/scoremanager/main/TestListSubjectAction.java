@@ -1,5 +1,6 @@
 package scoremanager.main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,8 +54,11 @@ public class TestListSubjectAction extends Action {
 		List<Subject> subjectList = subjectDAO.filter(school);
 
 		// 入学年度リスト(2015〜2035）
+		LocalDate todaysDate = LocalDate.now();
+		int year = todaysDate.getYear();
 		List<Integer> entYears = new ArrayList<>();
-		for (int i = 2015; i <= 2035; i++) {
+
+		for (int i = year - 10; i < year + 11; i++) {
 			entYears.add(i);
 		}
 

@@ -34,12 +34,13 @@ public class TestRegistAction extends Action {
 		SubjectDAO sDao = new SubjectDAO();
 		List<Subject> subjects = sDao.filter(teacher.getSchool());
 
+		// 入学年度リスト(2015〜2035）
 		LocalDate todaysDate = LocalDate.now();
 		int year = todaysDate.getYear();
-		List<Integer> entYearSet = new ArrayList<>();
+		List<Integer> entYears = new ArrayList<>();
 
-		for (int i = year - 10; i < year + 1; i++) {
-			entYearSet.add(i);
+		for (int i = year - 10; i < year + 11; i++) {
+			entYears.add(i);
 		}
 
 		List<Integer> numSet = new ArrayList<>();
@@ -47,7 +48,7 @@ public class TestRegistAction extends Action {
 			numSet.add(i);
 		}
 
-		request.setAttribute("ent_year_set", entYearSet);
+		request.setAttribute("ent_year_set", entYears);
 		request.setAttribute("class_num_set", class_list);
 		request.setAttribute("subjects", subjects);
 		request.setAttribute("num_set", numSet);
